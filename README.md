@@ -148,3 +148,13 @@ Made by Harpreet Singh
 
 - GitHub: @harpreetsingh9
 - Email: singhharpreet92001@gmail.com
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+You are free to use, modify, and distribute this project, even for commercial purposes, as long as you provide proper credit.
+
+🔗 Full license text is available in the [LICENSE](./LICENSE) file.
