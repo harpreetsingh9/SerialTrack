@@ -30,6 +30,59 @@ A simple, effective, and evolving product warranty tracking system for electroni
 
 ---
 
+## 📍 Real-World Usage
+
+This app has been actively used **since 2022** in a real world shop environment.  
+It has handled hundreds of product warranty entries and replacements **without any issues**.
+
+### ✅ Benefits observed:
+- Reduced manual paper work
+- No need to rely on mobile Excel sheets, which are often compact and hard to use
+- Fast and easy UI for adding/finding/replacing products, especially on mobile 📱
+- Saves time and helps staff stay organized with minimal training 🔧
+
+> 📱 *The app is optimized for mobile usage — much easier and faster than managing Excel on small screens.*
+> Built with practicality, not just theory. 😉
+
+## 🌗 UI & Design
+
+- Supports **both Light and Dark themes**
+- Clean, **minimalist UI** for distraction-free usage
+- Responsive layout for desktops and mobile
+- Mobile first design
+
+---
+
+## 🖼️ Image-to-Serial Feature (Experimental)
+
+SerialTrack also includes an **experimental image upload feature** using `tesseract.js` (OCR library). With this:
+
+- You can **upload a product label image**
+- The system automatically **extracts the serial number** by detecting text
+- It captures the 4 characters **just before the word `rt`**
+- If your products's serial numbers have any other pattern you can modify in the code
+
+⚠️ *Note: This feature is still experimental and may not always extract the correct number. Manual verification is recommended after auto-filling.*
+
+---
+
+## 📷 Screenshots
+
+<img width="293" alt="comp-1" src="https://github.com/user-attachments/assets/970bf94b-9162-45d1-ad12-058f3065f50f" /> 
+
+<img width="291" alt="comp-2" src="https://github.com/user-attachments/assets/6b5bc10b-4442-4b78-a9a6-de5fa2c365aa" /> 
+
+<img width="294" alt="comp-3" src="https://github.com/user-attachments/assets/8e024786-02ef-4839-a1b7-d852be473c7f" /> 
+
+<img width="293" alt="comp-4" src="https://github.com/user-attachments/assets/afcd6c22-9857-4346-8ff3-3334a4de6847" /> 
+
+<img width="295" alt="comp-5" src="https://github.com/user-attachments/assets/6ab85b4e-cebb-494c-8321-8b62517a19a9" /> 
+
+<img width="294" alt="comp-6" src="https://github.com/user-attachments/assets/3ec5c70a-f39e-43c8-b6e3-6da3187607fe" />  
+
+
+---
+
 ## 🚧 Upcoming Feature: Multi-Tenant Support
 
 > We are actively working on a major feature: **Multi-Shop (Multi-Tenant) support**.  
