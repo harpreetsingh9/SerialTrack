@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SerialTrack
 
-## Getting Started
+A simple, effective, and evolving product warranty tracking system for electronics or hardware shops. Designed to help shopkeepers log, track, and manage product serial numbers, model numbers, customer details, and warranty replacements.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🔐 **Add Product**  
+  Save new products with serial number, model number, customer name, and purchase date.
+
+- 🔍 **Find Product**  
+  Instantly search by serial number to check:
+  - Customer info
+  - Purchase date
+  - Warranty status (based on your shop’s policy)
+  - Whether the product was already replaced
+
+- 🔁 **Replace Product**  
+  If a product is under warranty and faulty, you can:
+  - Click “Replace”
+  - Enter new serial number
+  - Automatically update and track replacement history
+
+- 📊 **Dashboard**  
+  Visual stats for:
+  - Total added products
+  - Total replacements
+  - Monthly and yearly insights
+
+---
+
+## 🚧 Upcoming Feature: Multi-Tenant Support
+
+> We are actively working on a major feature: **Multi-Shop (Multi-Tenant) support**.  
+> This will allow:
+> - Multiple shop accounts (each with their own data)
+> - Products and replacements will be visible only within each shop
+> - Ideal for scaling into a SaaS platform
+
+Stay tuned! 🎯
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Database:** MongoDB
+- **Styling:** Tailwind CSS
+- **Backend:** API Routes (server actions)
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# Clone the repo
+git clone https://github.com/harpreetsingh9/serialtrack.git
+
+# Install dependencies
+cd serialtrack
+npm install
+
+# Set up environment variables in .env.local
+MONGODB_URI=your_mongo_uri
+BASE_URL='http://localhost:3000'
+
+# Run the app
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🤝 Contributing
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Contributions are welcome! Here’s how you can help:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🐛 Report bugs  
+- 📈 Suggest features  
+- 🛠️ Submit pull requests  
+- 🌍 Help with multi-tenant/shop feature
 
-## Learn More
+To contribute:
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the repository  
+2. Create your feature branch  
+   > git checkout -b feature/your-feature-name
+3. Commit your changes
+    > git commit -m "Add your feature"
+4. Push to the branch
+    > git push origin feature/your-feature-name
+5. Open a Pull Request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🙋‍♂️ Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Made by Harpreet Singh
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- GitHub: @harpreetsingh9
+- Email: singhharpreet92001@gmail.com
