@@ -1,13 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOffIcon } from "lucide-react";
-import BarChart from "@/components/BarChart";
 import useLazyFetch from "@/hooks/useLazyFetch";
-import RecentEntries from "@/components/RecentEntries";
-import Loader from "@/components/Loader";
+import BarChart from "@/components/dashboard/BarChart";
+import RecentEntries from "@/components/dashboard/RecentEntries";
+import StatsCard from "@/components/dashboard/StatsCard";
+
+import { Button } from "@/components/ui/button"
+import CreateShopAlert from "@/components/dashboard/CreateShopAlert";
+import ShopTitle from "@/components/dashboard/ShopTitle";
 
 export default function Dashboard() {
+	const [shop, setShop] = useState(null);
+
 	const [seeTotal, setSeeTotal] = useState(false);
 	const [seeMonthStats, setSeeMonthStats] = useState(false)
 	const [seeYearStats, setSeeYearStats] = useState(false)
@@ -43,6 +48,12 @@ export default function Dashboard() {
 	} = useLazyFetch('/api/dashboard/total')
 
 	useEffect(() => {
+		const existingShop = localStorage.getItem('shopName')
+		if (existingShop) setShop(existingShop)
+	}, [])
+
+
+	useEffect(() => {
 		if (seeMonthStats) {
 			if (monthlyFlag === -1) {
 				fetchMonthlyStats();
@@ -73,70 +84,54 @@ export default function Dashboard() {
 	}, [seeMonthStats, seeYearStats, seeRecent, seeTotal]);
 
 	return (
-		<div className="p-4 max-w-3xl mx-auto">
-			<h1 className="text-2xl font-bold text-center mb-6 text-[#222328] dark:text-white">
-				Dashboard 📊
-			</h1>
+		<div className="p-6 space-y-6">
+			<h1 className="text-2xl font-bold">Dashboard</h1>
+			<p className="text-lg">Hi, User 👋</p>
 
-			<div className="flex justify-center items-center mb-2">
-				<Link
-					href="/upload"
-					className="font-inter font-medium bg-[#6469ff] 
-        text-white px-4 py-2 rounded-md"
-				>
-					Upload using camera
-				</Link>
-			</div>
+			{!shop ? (
+				<CreateShopAlert setShop={setShop} />
+			) : (
+				<>
+					<ShopTitle shop={shop} />
 
-			<RecentEntries
-				recentData={recentData}
-				see={seeRecent}
-				setSee={setSeeRecent}
-				loading={recentLoading}
-			/>
-
-			<div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-				<div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-					<div className="flex items-center gap-1">
-						<h2 className="text-lg font-semibold text-indigo-600">
-							Total Entries
-						</h2>
-						<span onClick={() => setSeeTotal((prev) => !prev)}>{!seeTotal ? <EyeOffIcon /> : <Eye />}</span>
+					<div className="flex flex-wrap gap-4 pt-6">
+						<Link href="/add">
+							<Button className="bg-blue-600 hover:bg-blue-700">Add Product</Button>
+						</Link>
+						<Link href="/find">
+							<Button className="bg-gray-800 hover:bg-gray-900">Find Product</Button>
+						</Link>
+						<Link href="/upload">
+							<Button className="bg-gray-800 hover:bg-gray-900">Upload Img</Button>
+						</Link>
 					</div>
-					<div className="text-xl font-bold">{!seeTotal ? '-' : totalLoading ? <Loader /> : totalData.length}</div>
-				</div>
 
-				<div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-					<div className="flex items-center gap-1">
-						<h2 className="text-lg font-semibold text-red-600">Replaced</h2>
-						<span onClick={() => setSeeTotal((prev) => !prev)}>{!seeTotal ? <EyeOffIcon /> : <Eye />}</span>
-					</div>
-					<div className="text-xl font-bold">{!seeTotal ? '-' : totalLoading ? <Loader /> :
-						totalData.reduce(
-							(acc, p) => acc + p.compDetails.filter((d) => d.isReplace).length,
-							0
-						)}
-					</div>
-				</div>
-			</div>
-
-			<BarChart
-				see={seeMonthStats}
-				setSee={setSeeMonthStats}
-				statsName="Monthly Stats"
-				statsData={monthlyStats}
-				statsType="Month"
-				loading={monthlyLoading}
-			/>
-			<BarChart
-				see={seeYearStats}
-				setSee={setSeeYearStats}
-				statsName="Yearly Stats"
-				statsData={yearlyStats}
-				statsType="Year"
-				loading={yearlyLoading}
-			/>
-
+					<RecentEntries
+						recentData={recentData}
+						see={seeRecent}
+						setSee={setSeeRecent}
+						loading={recentLoading}
+					/>
+					<StatsCard seeTotal={seeTotal} setSeeTotal={setSeeTotal}
+						totalData={totalData} totalLoading={totalLoading} />
+					<BarChart
+						see={seeMonthStats}
+						setSee={setSeeMonthStats}
+						statsName="Monthly Stats"
+						statsData={monthlyStats}
+						statsType="Month"
+						loading={monthlyLoading}
+					/>
+					<BarChart
+						see={seeYearStats}
+						setSee={setSeeYearStats}
+						statsName="Yearly Stats"
+						statsData={yearlyStats}
+						statsType="Year"
+						loading={yearlyLoading}
+					/>
+				</>
+			)}
 		</div>
 	);
 }

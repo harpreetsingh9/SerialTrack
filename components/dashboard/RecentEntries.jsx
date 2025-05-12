@@ -1,5 +1,5 @@
-import React from "react";
-import Loader from "./Loader";
+import Loader from "../Loader";
+import { Button } from "@/components/ui/button"
 
 export default function RecentEntries({ recentData, see, setSee, loading }) {
   return (
@@ -9,13 +9,8 @@ export default function RecentEntries({ recentData, see, setSee, loading }) {
           Recent Entries
         </h2>
         {!see && (
-          <button
-            onClick={() => setSee(true)}
-            className="relative inline-flex items-center justify-center p-2
-             bg-[#6469ff] hover:bg-[#4f52e9] text-white text-base font-medium 
-            rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4649ff]
-            transition ease-in-out duration-150"
-          >
+          <Button
+            onClick={() => setSee(true)}>
             {loading && (
               <div
                 className="absolute inset-0 bg-black bg-opacity-40
@@ -25,7 +20,7 @@ export default function RecentEntries({ recentData, see, setSee, loading }) {
               </div>
             )}
             See Recent Entries
-          </button>
+          </Button>
         )}
       </div>
       <ul className="flex flex-col gap-3">

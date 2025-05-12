@@ -13,7 +13,7 @@ const Card = ({ name, date, compDetails, handleReplaceClick }) => {
       <strong>Date:</strong> {formattedDate(date)} <br />
       <strong>Model no: </strong>
       <strong>SNo: </strong>
-      {compDetails.map((compDetail) => (
+      {compDetails?.map((compDetail) => (
         <div
           key={compDetail._id}
           className="flex gap-5 my-2 items-center"

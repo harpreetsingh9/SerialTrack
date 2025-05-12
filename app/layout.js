@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "SerialTrack | Product warranty tracking system for shops",
   description: "Product warranty tracking system for shops.",
-  metadataBase: new URL(baseUrl),
+  // metadataBase: new URL(baseUrl),
 };
 
 export default function RootLayout({ children }) {
