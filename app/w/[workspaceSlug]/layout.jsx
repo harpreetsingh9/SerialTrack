@@ -23,9 +23,13 @@ export default async function WorkspaceLayout({ children, params }) {
           <button className="rounded-full border border-gray-300 dark:border-gray-700 h-10 w-10 flex items-center justify-center bg-white dark:bg-black">
             <Bell className="h-4 w-4" />
           </button>
-          <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium text-sm">
+          <Link
+            href={`/w/${workspaceSlug}/profile`}
+            className="h-10 w-10 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors flex items-center justify-center text-white font-medium text-sm shadow-sm cursor-pointer"
+            title="View Profile"
+          >
             US
-          </div>
+          </Link>
         </div>
       </header>
       <div className="flex flex-1 pb-16 md:pb-0">
