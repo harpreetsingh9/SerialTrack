@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Search, Bell, LogOut } from "lucide-react";
+import { Search, Bell } from "lucide-react";
 import SidebarNav from "@/components/workspace/SidebarNav";
 import MobileBottomNav from "@/components/workspace/MobileBottomNav";
+import LogoutButton from "@/components/workspace/LogoutButton";
 
 export default async function WorkspaceLayout({ children, params }) {
   const { workspaceSlug } = await params;
@@ -55,10 +56,7 @@ export default async function WorkspaceLayout({ children, params }) {
           </div>
           <SidebarNav workspaceSlug={workspaceSlug} />
           <div className="mt-auto p-4">
-             <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-red-500 transition-all hover:bg-red-50 dark:hover:bg-red-950/50 w-full text-sm font-medium">
-               <LogOut className="h-4 w-4" />
-               Log out
-             </button>
+             <LogoutButton />
           </div>
         </aside>
         <main className="flex flex-1 flex-col p-4 md:p-8 lg:p-12">

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { User, Building2, Shield, Mail, Calendar, Key, Copy, Check } from "lucide-react";
+import LogoutButton from "@/components/workspace/LogoutButton";
 
 export default function ProfilePage() {
   const params = useParams();
@@ -78,6 +79,9 @@ export default function ProfilePage() {
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300 capitalize">
               {workspace.name}
             </span>
+          </div>
+          <div className="w-full pt-2">
+            <LogoutButton />
           </div>
         </div>
 
