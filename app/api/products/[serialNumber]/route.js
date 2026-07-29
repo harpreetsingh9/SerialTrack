@@ -4,7 +4,7 @@ import Product from "@/models/productsModel";
 connect();
 
 export async function GET(request, { params }) {
-  var { serialNumber } = params;
+  const { serialNumber } = await params;
   try {
     const products = await Product.find({
       "compDetails.serialNumber": { $regex: `.*${serialNumber}.*` },

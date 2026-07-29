@@ -6,7 +6,7 @@ connect();
 export async function PUT(request, { params }) {
   const res = await request.json();
   const { selectedCompDetailId } = res;
-  var { newSerialNumber } = params;
+  const { newSerialNumber } = await params;
   try {
     const product = await Product.findOneAndUpdate(
       // { name, "compDetails.serialNumber": serialNumber },

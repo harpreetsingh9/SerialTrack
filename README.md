@@ -1,160 +1,109 @@
-# SerialTrack
+# SerialTrack 🚀
 
-A simple, effective, and evolving product warranty tracking system for electronics or hardware shops. Designed to help shopkeepers log, track, and manage product serial numbers, model numbers, customer details, and warranty replacements.
+**SerialTrack** is a modern, production-ready, multi-tenant SaaS platform for **universal serial-number-based product tracking and warranty management**.
 
----
-
-## ✨ Features
-
-- 🔐 **Add Product**  
-  Save new products with serial number, model number, customer name, and purchase date.
-
-- 🔍 **Find Product**  
-  Instantly search by serial number to check:
-  - Customer info
-  - Purchase date
-  - Warranty status (based on your shop’s policy)
-  - Whether the product was already replaced
-
-- 🔁 **Replace Product**  
-  If a product is under warranty and faulty, you can:
-  - Click “Replace”
-  - Enter new serial number
-  - Automatically update and track replacement history
-
-- 📊 **Dashboard**  
-  Visual stats for:
-  - Total added products
-  - Total replacements
-  - Monthly and yearly insights
+Originally built for compressor tracking, SerialTrack has been completely restructured and modernized into a generic multi-tenant SaaS platform suitable for tracking any serial-number-based hardware or electronic components—from AC Compressors, Indoor/Outdoor Units, and PCB Boards to Refrigerators, Washing Machine Parts, and Electronic Spare Parts.
 
 ---
 
-## 📍 Real-World Usage
+## ✨ Key Features & Architecture
 
-This app has been actively used **since 2022** in a real world shop environment.  
-It has handled hundreds of product warranty entries and replacements **without any issues**.
+### 🏢 Multi-Tenant Workspace Architecture
+- **Complete Data Isolation**: Each business or shop operates within its own workspace (`/w/{workspaceSlug}/dashboard`).
+- **Dynamic Onboarding**: Fast onboarding flow (`/onboarding`) to create workspace slugs automatically.
+- **Team Invitations & Link Sharing**: Shareable invite links (`/accept-invite?token=...`) allowing Owners/Admins to invite team members with specific roles.
+- **Role-Based Access Control (RBAC)**:
+  - **Owner**: Full workspace administrative access.
+  - **Admin**: User and team management, reports, and workspace settings.
+  - **Manager**: Manage products, replacements, and analytics.
+  - **Employee**: Add new products, search records, and process replacements.
+  - **Viewer**: Read-only product inspection.
 
-### ✅ Benefits observed:
-- Reduced manual paper work
-- No need to rely on mobile Excel sheets, which are often compact and hard to use
-- Fast and easy UI for adding/finding/replacing products, especially on mobile 📱
-- Saves time and helps staff stay organized with minimal training 🔧
+### 🌐 Universal Product & Warranty Management
+- **Generic Product Catalog**: Supports custom product categories (Air Conditioners, Refrigerators, Washing Machines, PCBs, Motors, etc.).
+- **Dynamic Bulk Registration**: Add multiple serial numbers and models under a single customer entry effortlessly.
+- **Instant Product Search**: Search records instantly by serial number, brand, or product name.
+- **Immutable Replacement History**: Replacement history is recorded without overwriting old product records, keeping a complete audit trail.
 
-> 📱 *The app is optimized for mobile usage — much easier and faster than managing Excel on small screens.*
-> Built with practicality, not just theory. 😉
-
-## 🌗 UI & Design
-
-- Supports **both Light and Dark themes**
-- Clean, **minimalist UI** for distraction-free usage
-- Responsive layout for desktops and mobile
-- Mobile first design
-
----
-
-## 🖼️ Image-to-Serial Feature (Experimental)
-
-SerialTrack also includes an **experimental image upload feature** using `tesseract.js` (OCR library). With this:
-
-- You can **upload a product label image**
-- The system automatically **extracts the serial number** by detecting text
-- It captures the 4 characters **just before the word `rt`**
-- If your products's serial numbers have any other pattern you can modify in the code
-
-⚠️ *Note: This feature is still experimental and may not always extract the correct number. Manual verification is recommended after auto-filling.*
-
----
-
-## 📷 Screenshots
-
-<img width="293" alt="comp-1" src="https://github.com/user-attachments/assets/970bf94b-9162-45d1-ad12-058f3065f50f" /> 
-
-<img width="291" alt="comp-2" src="https://github.com/user-attachments/assets/6b5bc10b-4442-4b78-a9a6-de5fa2c365aa" /> 
-
-<img width="294" alt="comp-3" src="https://github.com/user-attachments/assets/8e024786-02ef-4839-a1b7-d852be473c7f" /> 
-
-<img width="293" alt="comp-4" src="https://github.com/user-attachments/assets/afcd6c22-9857-4346-8ff3-3334a4de6847" /> 
-
-<img width="295" alt="comp-5" src="https://github.com/user-attachments/assets/6ab85b4e-cebb-494c-8321-8b62517a19a9" /> 
-
-<img width="294" alt="comp-6" src="https://github.com/user-attachments/assets/3ec5c70a-f39e-43c8-b6e3-6da3187607fe" />  
-
-
----
-
-## 🚧 Upcoming Feature: Multi-Tenant Support
-
-> We are actively working on a major feature: **Multi-Shop (Multi-Tenant) support**.  
-> This will allow:
-> - Multiple shop accounts (each with their own data)
-> - Products and replacements will be visible only within each shop
-> - Ideal for scaling into a SaaS platform
-
-Stay tuned! 🎯
+### 🎨 Modern SaaS UI/UX
+- **Design Philosophy**: Minimal, clean, dark-mode primary interface inspired by modern SaaS platforms (Linear, Vercel, Dub).
+- **SEO-Optimized Marketing Site**: Server-side rendered landing page (`/`), pricing, and auth pages.
+- **Responsive Layout**: Desktop sidebar navigation with mobile-optimized views.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Framework:** Next.js 15 (App Router)
-- **Database:** MongoDB
-- **Styling:** Tailwind CSS
-- **Backend:** API Routes (server actions)
+- **Framework**: Next.js 16 (App Router, Turbopack)
+- **UI & Icons**: Tailwind CSS 4, Lucide Icons, Motion (Framer Motion)
+- **Authentication**: `better-auth` with MongoDB Adapter
+- **Database & ORM**: MongoDB, Mongoose
+- **Language**: JavaScript / TypeScript
+
+---
+
+## 📁 Directory Structure
+
+```text
+app/
+ ├── (marketing)/           # Server-side rendered Marketing Landing Page
+ ├── (auth)/                # Auth Pages (Login / Signup)
+ ├── onboarding/            # Post-signup Workspace Creation Flow
+ ├── accept-invite/         # Team Invitation Link Handler
+ ├── w/
+ │    └── [workspaceSlug]/  # Multi-Tenant Workspace Routes
+ │         ├── dashboard/   # Workspace Analytics & Stats
+ │         ├── products/
+ │         │    ├── add/    # Dynamic Multi-Row Product Registration
+ │         │    └── search/ # Instant Product Lookup & Replacements
+ │         ├── team/        # Team Management & Invite Link Generation
+ │         └── reports/     # Monthly & Replacement Trend Reports
+ ├── api/                   # Multi-Tenant API Route Handlers
+models/                     # Mongoose Schemas (Product, Customer, Invite, ReplacementHistory)
+lib/                        # Better-Auth Configuration & Utilities
+```
 
 ---
 
 ## 🚀 Getting Started
 
+### 1. Clone & Install Dependencies
+
 ```bash
-# Clone the repo
-git clone https://github.com/harpreetsingh9/serialtrack.git
-
-# Install dependencies
-cd serialtrack
+git clone https://github.com/harpreetsingh9/WarrantyManager.git
+cd WarrantyManager
 npm install
+```
 
-# Set up environment variables in .env.local
-MONGODB_URI=your_mongo_uri
-BASE_URL='http://localhost:3000'
+### 2. Configure Environment Variables
 
-# Run the app
+Create a `.env` file in the root directory:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+BETTER_AUTH_SECRET=your_super_secret_key
+BETTER_AUTH_URL=http://localhost:3000
+```
+
+### 3. Run Development Server
+
+```bash
 npm run dev
 ```
 
-## 🤝 Contributing
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Contributions are welcome! Here’s how you can help:
-
-- 🐛 Report bugs  
-- 📈 Suggest features  
-- 🛠️ Submit pull requests  
-- 🌍 Help with multi-tenant/shop feature
-
-To contribute:
-
-1. Fork the repository  
-2. Create your feature branch  
-   > git checkout -b feature/your-feature-name
-3. Commit your changes
-    > git commit -m "Add your feature"
-4. Push to the branch
-    > git push origin feature/your-feature-name
-5. Open a Pull Request
+---
 
 ## 🙋‍♂️ Author
 
-Made by Harpreet Singh
+Made by **Harpreet Singh**
 
-- GitHub: @harpreetsingh9
-- Email: singhharpreet92001@gmail.com
+- **GitHub**: [@harpreetsingh9](https://github.com/harpreetsingh9)
+- **Email**: singhharpreet92001@gmail.com
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
-
-You are free to use, modify, and distribute this project, even for commercial purposes, as long as you provide proper credit.
-
-🔗 Full license text is available in the [LICENSE](./LICENSE) file.
+This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE) file for details.

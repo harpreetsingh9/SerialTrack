@@ -1,9 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-
-const baseUrl = 'serialtrack.vercel.app'
-// const baseUrl = process.env.BASE_URL
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,18 +12,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SerialTrack | Product warranty tracking system for shops",
-  description: "Product warranty tracking system for shops.",
-  // metadataBase: new URL(baseUrl),
+  title: "SerialTrack | Product warranty tracking system",
+  description: "Product warranty tracking system for modern businesses.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white dark:bg-[#0a0a0a] text-black dark:text-white`}>
         {children}
       </body>
     </html>
