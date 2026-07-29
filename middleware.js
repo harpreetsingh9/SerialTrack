@@ -18,7 +18,7 @@ export async function middleware(request) {
 
   if (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/signup') {
       if (betterAuthSession) {
-          return NextResponse.redirect(new URL('/w/dashboard', request.url)); // We'll need a way to redirect to default workspace
+          return NextResponse.redirect(new URL('/onboarding', request.url));
       }
   }
 

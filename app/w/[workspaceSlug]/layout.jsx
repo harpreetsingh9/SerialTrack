@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Search, Bell, Home, Package, PlusCircle, Search as SearchIcon, FileText, Settings, LogOut, Users } from "lucide-react";
+import { Search, Bell, LogOut } from "lucide-react";
+import SidebarNav from "@/components/workspace/SidebarNav";
+import MobileBottomNav from "@/components/workspace/MobileBottomNav";
 
 export default async function WorkspaceLayout({ children, params }) {
   const { workspaceSlug } = await params;
@@ -26,7 +28,7 @@ export default async function WorkspaceLayout({ children, params }) {
           </div>
         </div>
       </header>
-      <div className="flex flex-1">
+      <div className="flex flex-1 pb-16 md:pb-0">
         <aside className="hidden w-64 flex-col border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0a0a0a] md:flex">
           <div className="p-4 border-b border-gray-200 dark:border-gray-800">
             {/* Workspace Switcher Placeholder */}
@@ -40,50 +42,7 @@ export default async function WorkspaceLayout({ children, params }) {
               </div>
             </div>
           </div>
-          <nav className="grid items-start px-2 py-4 text-sm font-medium gap-1">
-            <Link
-              href={`/w/${workspaceSlug}/dashboard`}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-900 transition-all hover:text-gray-900 dark:hover:text-white"
-            >
-              <Home className="h-4 w-4" />
-              Dashboard
-            </Link>
-            <Link
-              href={`/w/${workspaceSlug}/products/add`}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:hover:text-white"
-            >
-              <PlusCircle className="h-4 w-4" />
-              Add Product
-            </Link>
-            <Link
-              href={`/w/${workspaceSlug}/products/search`}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:hover:text-white"
-            >
-              <SearchIcon className="h-4 w-4" />
-              Search Product
-            </Link>
-            <Link
-              href={`/w/${workspaceSlug}/reports`}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:hover:text-white"
-            >
-              <FileText className="h-4 w-4" />
-              Reports
-            </Link>
-            <Link
-              href={`/w/${workspaceSlug}/team`}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:hover:text-white"
-            >
-              <Users className="h-4 w-4" />
-              Team & Members
-            </Link>
-            <Link
-              href={`/w/${workspaceSlug}/settings`}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:hover:text-white"
-            >
-              <Settings className="h-4 w-4" />
-              Settings
-            </Link>
-          </nav>
+          <SidebarNav workspaceSlug={workspaceSlug} />
           <div className="mt-auto p-4">
              <button className="flex items-center gap-3 rounded-lg px-3 py-2 text-red-500 transition-all hover:bg-red-50 dark:hover:bg-red-950/50 w-full text-sm font-medium">
                <LogOut className="h-4 w-4" />
@@ -95,6 +54,7 @@ export default async function WorkspaceLayout({ children, params }) {
           {children}
         </main>
       </div>
+      <MobileBottomNav workspaceSlug={workspaceSlug} />
     </div>
   );
 }

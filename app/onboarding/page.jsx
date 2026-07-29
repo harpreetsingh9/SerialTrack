@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
@@ -8,7 +8,25 @@ export default function OnboardingPage() {
   const router = useRouter();
   const [workspaceName, setWorkspaceName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [checking, setChecking] = useState(true);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function checkExistingWorkspace() {
+      try {
+        const { data: orgs } = await authClient.organization.list();
+        if (orgs && orgs.length > 0 && orgs[0].slug) {
+          router.push(`/w/${orgs[0].slug}/dashboard`);
+          return;
+        }
+      } catch (err) {
+        // Continue to onboarding if check fails
+      } finally {
+        setChecking(false);
+      }
+    }
+    checkExistingWorkspace();
+  }, [router]);
 
   const handleCreateWorkspace = async (e) => {
     e.preventDefault();
@@ -42,6 +60,14 @@ export default function OnboardingPage() {
       router.push(`/w/${slug}/dashboard`);
     }
   };
+
+  if (checking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50 dark:bg-[#0a0a0a]">
+        <p className="text-sm text-gray-500 animate-pulse">Loading workspace...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50 dark:bg-[#0a0a0a]">
